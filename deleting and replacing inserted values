@@ -1,0 +1,93 @@
+#include <iostream>
+using namespace std;
+
+const int MAX_SIZE = 100;
+
+int main() {
+    int arr[MAX_SIZE];
+    int size = 0;
+    int pos, value;
+
+    // Inserting values
+    cout << "Enter the size of the array: ";
+    cin >> size;
+
+    cout << "Enter " << size << " values: ";
+    for (int i = 0; i < size; i++) {
+        cin >> arr[i];
+    }
+
+    cout << "Enter the position to insert a value: ";
+    cin >> pos;
+
+    cout << "Enter the value to insert: ";
+    cin >> value;
+
+    if (pos < 1 || pos > size+1) {
+        cout << "Invalid position!" << endl;
+    } else {
+        // Shift all elements to the right of pos one position to the right
+        for (int i = size-1; i >= pos-1; i--) {
+            arr[i+1] = arr[i];
+        }
+
+        // Insert the value at pos
+        arr[pos-1] = value;
+
+        // Increase the size of the array
+        size++;
+
+        // Print the updated array
+        cout << "Array after inserting the value: ";
+        for (int i = 0; i < size; i++) {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
+
+    // Deleting values
+    cout << "Enter the position to delete a value: ";
+    cin >> pos;
+
+    if (pos < 1 || pos > size) {
+        cout << "Invalid position!" << endl;
+    } else {
+        // Shift all elements to the right of pos one position to the left
+        for (int i = pos; i < size; i++) {
+            arr[i-1] = arr[i];
+        }
+
+        // Decrease the size of the array
+        size--;
+
+        // Print the updated array
+        cout << "Array after deleting the value: ";
+        for (int i = 0; i < size; i++) {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
+
+    // Replacing values
+    cout << "Enter the position to replace a value: ";
+    cin >> pos;
+
+    cout << "Enter the new value: ";
+    cin >> value;
+
+    if (pos < 1 || pos > size) {
+        cout << "Invalid position!" << endl;
+    } else {
+        // Replace the value at pos
+        arr[pos-1] = value;
+
+        // Print the updated array
+        cout << "Array after replacing the value: ";
+        for (int i = 0; i < size; i++) {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}

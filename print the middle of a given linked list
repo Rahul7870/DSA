@@ -1,0 +1,58 @@
+#include <iostream>
+
+using namespace std;
+
+struct Node {
+    int data;
+    Node* next;
+};
+
+void printMiddle(Node* head) {
+    if (head == NULL) return;
+
+    Node* slow = head;
+    Node* fast = head;
+
+    while (fast != NULL && fast->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    cout << "The middle element is: " << slow->data << endl;
+}
+
+int main() {
+    // Creating a linked list with 7 elements
+    Node* head = new Node;
+    head->data = 1;
+
+    Node* second = new Node;
+    second->data = 2;
+    head->next = second;
+
+    Node* third = new Node;
+    third->data = 3;
+    second->next = third;
+
+    Node* fourth = new Node;
+    fourth->data = 4;
+    third->next = fourth;
+
+    Node* fifth = new Node;
+    fifth->data = 5;
+    fourth->next = fifth;
+
+    Node* sixth = new Node;
+    sixth->data = 6;
+    fifth->next = sixth;
+
+    Node* seventh = new Node;
+    seventh->data = 7;
+    sixth->next = seventh;
+    seventh->next = NULL;
+
+    // Printing the middle of the linked list
+    printMiddle(head);
+
+    return 0;
+}

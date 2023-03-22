@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+
+// Recursive function to calculate the factorial of a number
+int factorial(int n) {
+  if (n == 0) {
+    return 1;
+  }
+
+  return n * factorial(n - 1);
+}
+
+// Recursive function to calculate the nth Fibonacci number
+int fibonacci(int n) {
+  if (n <= 1) {
+    return n;
+  }
+
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+// Recursive function to print the binary representation of a decimal number
+void decimalToBinary(int n) {
+  if (n == 0) {
+    return;
+  }
+
+  decimalToBinary(n / 2);
+
+  cout << n % 2;
+}
+
+int main() {
+  // Example 1: Factorial
+  int num = 5;
+  int fact = factorial(num);
+  cout << "Factorial of " << num << " = " << fact << endl;
+
+  // Example 2: Fibonacci sequence
+  int fibNum = 8;
+  int fib = fibonacci(fibNum);
+  cout << "The " << fibNum << "th Fibonacci number = " << fib << endl;
+
+  // Example 3: Decimal to binary conversion
+  int decimalNum = 10;
+  cout << "Binary representation of " << decimalNum << " = ";
+  decimalToBinary(decimalNum);
+
+  return 0;
+}

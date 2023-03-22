@@ -1,0 +1,74 @@
+#include <iostream>
+using namespace std;
+
+#define MAX_SIZE 100
+
+class Queue {
+private:
+    int front, rear;
+    int arr[MAX_SIZE];
+public:
+    Queue() {
+        front = rear = -1;
+    }
+
+    bool isFull() {
+        return rear == MAX_SIZE - 1;
+    }
+
+    bool isEmpty() {
+        return front == -1 || front > rear;
+    }
+
+    void enqueue(int item) {
+        if (isFull()) {
+            cout << "Queue overflow\n";
+            return;
+        }
+        arr[++rear] = item;
+        if (front == -1) {
+            front++;
+        }
+    }
+
+    int dequeue() {
+        if (isEmpty()) {
+            cout << "Queue underflow\n";
+            return -1;
+        }
+        int item = arr[front++];
+        return item;
+    }
+
+    int peek() {
+        if (isEmpty()) {
+            cout << "Queue is empty\n";
+            return -1;
+        }
+        return arr[front];
+    }
+
+    void display() {
+        if (isEmpty()) {
+            cout << "Queue is empty\n";
+            return;
+        }
+        cout << "Queue elements are: ";
+        for (int i = front; i <= rear; i++) {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    Queue q;
+    q.enqueue(1);
+    q.enqueue(2);
+    q.enqueue(3);
+    q.display();
+    cout << "Dequeued element: " << q.dequeue() << endl;
+    cout << "Front element: " << q.peek() << endl;
+    q.display();
+    return 0;
+}

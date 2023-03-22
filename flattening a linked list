@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node* right;
+    Node* down;
+
+    Node(int data) {
+        this->data = data;
+        this->right = nullptr;
+        this->down = nullptr;
+    }
+};
+
+Node* merge(Node* a, Node* b) {
+    if (a == nullptr) {
+        return b;
+    }
+    if (b == nullptr) {
+        return a;
+    }
+    Node* result = nullptr;
+    if (a->data < b->data) {
+        result = a;
+        result->down = merge(a->down, b);
+    }
+    else {
+        result = b;
+        result->down = merge(a, b->down);
+    }
+    return result;
+}
+
+Node* flatten(Node* root) {
+    if (root == nullptr || root->right == nullptr) {
+        return root;
+    }
+    return merge(root, flatten(root->right));
+}
+
+int main() {
+    Node* root = new Node(5);
+    root->right = new Node(10);
+    root->right->right = new Node(19);
+    root->right->right->right = new Node(28);
+
+    root->down = new Node(7);
+    root->down->down = new Node(8);
+    root->down->down->down = new Node(30);
+
+    root->right->down = new Node(20);
+
+    root->right->right->down = new Node(22);
+    root->right->right->down->down = new Node(50);
+
+    Node* flattenedList = flatten(root);
+
+    while (flattenedList != nullptr) {
+        cout << flattenedList->data << " ";
+        flattenedList = flattenedList->down;
+    }
+
+    return 0;
+}
