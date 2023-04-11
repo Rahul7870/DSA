@@ -234,7 +234,7 @@ void deletion_specified()
         free(temp);  
         printf("\nnode deleted\n");  
     }     
-}  
+} 
 void display()  
 {  
     struct node *ptr;  
